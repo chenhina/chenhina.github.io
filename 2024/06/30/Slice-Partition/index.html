@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Slice Partition | HBlog</title>
+    <meta name="author" content="Hina" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>HBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;HBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Slice Partition</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/6/30
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="数组分和"><a href="#数组分和" class="headerlink" title="数组分和"></a>数组分和</h2><p>数组分和——动态规划</p>
+<span id="more"></span>
+
+<h2 id="416-分割等和子集"><a href="#416-分割等和子集" class="headerlink" title="416. 分割等和子集"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-equal-subset-sum/">416. 分割等和子集</a></h2><p>给你一个 <strong>只包含正整数</strong> 的 <strong>非空</strong> 数组 <code>nums</code> 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：nums = [1,5,11,5]
+输出：true
+解释：数组可以分割成 [1, 5, 5] 和 [11] 。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：nums = [1,2,3,5]
+输出：false
+解释：数组不能分割成两个元素和相等的子集。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 200</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 100</code></li>
+</ul>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>动态规划</p>
+<ol>
+<li>定义<code>dp[i][j]</code> 表示 从<code>[0, i]</code>中是否存在和为j的子序列</li>
+<li>状态转移<ol>
+<li>第 <code>i+1</code> 个数不选时  则 <code>dp[i+1][j] = dp[i][j]</code></li>
+<li>选<code>i+1</code>个数时  则 <code>dp[i+1][j] = dp[i][j-nums[i]]</code></li>
+</ol>
+</li>
+<li>初始状态 <code>dp[0][0] = true</code></li>
+<li>最终结果 <code>dp[n][sum/2]</code></li>
+</ol>
+<pre><code class="go">func canPartition(nums []int) bool &#123;
+    n := len(nums)
+    sum := 0
+    for i := range n &#123;
+        sum += nums[i]
+    &#125;
+    if sum%2 != 0 &#123;  // 不能整除说明无法二等分
+        return false
+    &#125;
+    setSum := sum/ 2  // 每个子序列的和
+    // dp[i][j] 表示前 [0, i]中是否有和为j的子序列存在
+    dp := make([][]bool, n+1)
+    dp[0] = make([]bool, setSum+1)
+    dp[0][0] = true
+    // 状态转移 dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i]]  不选i这个元素 以及选i这个元素
+    for i := range n &#123;
+        dp[i+1] = make([]bool, setSum+1)
+        for j := 0; j &lt;= setSum; j++ &#123;
+            dp[i+1][j] = dp[i][j] || (j &gt;= nums[i] &amp;&amp; dp[i][j-nums[i]])
+        &#125;
+    &#125;
+
+    return dp[len(nums)][setSum]
+&#125;
+</code></pre>
+<h2 id="698-划分为k个相等的子集"><a href="#698-划分为k个相等的子集" class="headerlink" title="698. 划分为k个相等的子集"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/">698. 划分为k个相等的子集</a></h2><p>给定一个整数数组 <code>nums</code> 和一个正整数 <code>k</code>，找出是否有可能把这个数组分成 <code>k</code> 个非空子集，其总和都相等。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入： nums = [4, 3, 2, 3, 5, 2, 1], k = 4
+输出： True
+说明： 有可能将其分成 4 个子集（5），（1,4），（2,3），（2,3）等于总和。
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: nums = [1,2,3,4], k = 3
+输出: false
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= k &lt;= len(nums) &lt;= 16</code></li>
+<li><code>0 &lt; nums[i] &lt; 10000</code></li>
+<li>每个元素的频率在 <code>[1,4]</code> 范围内</li>
+</ul>
+<pre><code class="go">func canPartitionKSubsets(nums []int, k int) bool &#123;
+    sum := 0
+    for _, v:= range nums&#123;
+        sum+=v
+    &#125;
+    if sum % k != 0&#123;
+        return false
+    &#125;
+    perSum := sum/k
+    sort.Ints(nums)
+    if nums[len(nums) - 1] &gt; perSum&#123;  // 如果最大的比perSum大 那么这个数的组合不可能=perSum
+        return false
+    &#125;
+    visited := make([]bool, len(nums))
+    var dfs func(target, k, start int, visited []bool) bool
+    dfs = func(target, k, start int, visited []bool) bool&#123;  // 要找k-1次 每次找一个和为perSum的子序列
+        if target == 0&#123;  // 说明找到一组满足条件的子序列 继续找下一组
+            return dfs(perSum, k-1, 0, visited)
+        &#125;
+        if k == 0&#123;  // 所以组合都找到了
+            return true
+        &#125;
+        for i:= start; i&lt;len(nums); i++&#123;
+            if visited[i]&#123;
+                continue
+            &#125;
+            visited[i] = true
+            if dfs(target - nums[i], k, i+1, visited)&#123;
+                return true
+            &#125;
+            visited[i] = false  // 回溯
+        &#125;
+        return false
+    &#125;
+    return dfs(perSum, k-1, 0, visited)
+&#125;
+</code></pre>
+<h3 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h3><h3 id="详细分析"><a href="#详细分析" class="headerlink" title="详细分析"></a>详细分析</h3><h4 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h4><ol>
+<li><strong>计算数组总和</strong>：时间复杂度为 <code>O(n)</code>)，其中 n 是数组 <code>nums</code> 的长度。</li>
+<li><strong>检查总和是否能被 k 整除</strong>：时间复杂度为 <code>O(1)</code>。</li>
+<li>**计算每个子集的目标和 <code>perSum</code>**：时间复杂度为 <code>O(1)</code>。</li>
+<li><strong>对数组进行排序</strong>：时间复杂度为 <code>O(nlog⁡n)</code>。</li>
+<li><strong>初始化 <code>visited</code> 数组</strong>：时间复杂度为 <code>O(n)</code>。</li>
+</ol>
+<h4 id="深度优先搜索-DFS-部分"><a href="#深度优先搜索-DFS-部分" class="headerlink" title="深度优先搜索 (DFS) 部分"></a>深度优先搜索 (DFS) 部分</h4><p>DFS 的核心部分是一个递归函数 <code>dfs</code>，其中包含一个 for 循环和递归调用。</p>
+<ul>
+<li><strong>目标和 <code>target</code></strong> 和子集数 <code>k</code> 的减少方式：<ul>
+<li>每次成功找到一个和为 <code>perSum</code> 的子集后，<code>k</code> 减 1，继续寻找下一个子集。</li>
+<li>当 <code>target</code> 为 0 时，重新开始寻找 <code>perSum</code> 的子集，但 <code>k</code> 减 1。</li>
+</ul>
+</li>
+<li><strong>遍历和递归</strong>：<ul>
+<li>每个递归调用都会遍历剩余的元素，这些元素数量在最坏情况下为 <code>O(n)</code>。</li>
+<li>在每次递归调用中，最多会进行 <code>O(n)</code> 次递归调用。</li>
+</ul>
+</li>
+<li><strong>回溯</strong>：<ul>
+<li>在找到一个满足条件的子集后，会进行回溯，尝试其他可能性。</li>
+</ul>
+</li>
+</ul>
+<h4 id="更详细的时间复杂度分析"><a href="#更详细的时间复杂度分析" class="headerlink" title="更详细的时间复杂度分析"></a>更详细的时间复杂度分析</h4><p>考虑每次递归调用中，每个元素都可以被选择或者不被选择，形成一种组合的情况：</p>
+<ul>
+<li>在最坏情况下，所有组合都会被探索，即 <code>2^n</code> 种组合。</li>
+<li>但是由于剪枝操作（例如如果当前和已经超过 <code>target</code>，则不会继续递归），实际的复杂度会低于 <code>2^n</code>。</li>
+</ul>
+<p>对于每一个组合，我们需要检查是否可以构成 k 个子集，因此最坏情况下，时间复杂度接近于： <code>O(k * 2^n)</code></p>
+<h4 id="综合时间复杂度"><a href="#综合时间复杂度" class="headerlink" title="综合时间复杂度"></a>综合时间复杂度</h4><p>由于 <code>O(k * 2^n)</code> 是更大的项，因此我们可以忽略排序的时间复杂度 <code>O(nlog n)</code>。综合上述分析，该算法的时间复杂度为:<code>O(k * 2^n)</code></p>
+<p>其中，<code>n</code> 是数组 <code>nums</code> 的长度，<code>k</code> 是子集的数量。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 HBlog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Hina
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

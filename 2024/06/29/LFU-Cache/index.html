@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>LFU Cache | HBlog</title>
+    <meta name="author" content="Hina" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>HBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;HBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>LFU Cache</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/6/29
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>LFU全称是最不经常使用算法（Least Frequently Used），LFU算法的基本思想和所有的缓存算法一样，都是基于locality假设（局部性原理）：</p>
+<span id="more"></span>
+
+<blockquote>
+<p>如果一个信息项正在被访问，那么在近期它很可能还会被再次访问。</p>
+</blockquote>
+<p>LFU是基于这种思想进行设计：<strong>一定时期内被访问次数最少的页，在将来被访问到的几率也是最小的</strong>。</p>
+<p>相比于LRU（Least Recently Use）算法，LFU更加注重于使用的频率。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ol>
+<li>LFU首先是可以O(1)复杂度的查询 所以需要维护一个基于Key存储的map,  Value是一个双向链表(方便快速删除插入)</li>
+<li>删除访问频率最低的Key 所以需要维护一个基于Frequence的Map, Value是一个双端链表</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>实现 <code>LFUCache</code> 类：</p>
+<ul>
+<li><code>LFUCache(int capacity)</code> - 用数据结构的容量 <code>capacity</code> 初始化对象</li>
+<li><code>int get(int key)</code> - 如果键 <code>key</code> 存在于缓存中，则获取键的值，否则返回 <code>-1</code> 。</li>
+<li><code>void put(int key, int value)</code> - 如果键 <code>key</code> 已存在，则变更其值；如果键不存在，请插入键值对。当缓存达到其容量 <code>capacity</code> 时，则应该在插入新项之前，移除最不经常使用的项。在此问题中，当存在平局（即两个或更多个键具有相同使用频率）时，应该去除 <strong>最久未使用</strong> 的键。</li>
+</ul>
+<p>为了确定最不常使用的键，可以为缓存中的每个键维护一个 <strong>使用计数器</strong> 。使用计数最小的键是最久未使用的键。</p>
+<p>当一个键首次插入到缓存中时，它的使用计数器被设置为 <code>1</code> (由于 put 操作)。对缓存中的键执行 <code>get</code> 或 <code>put</code> 操作，使用计数器的值将会递增。</p>
+<p>函数 <code>get</code> 和 <code>put</code> 必须以 <code>O(1)</code> 的平均时间复杂度运行。</p>
+<pre><code class="go">type Node struct &#123;
+    Key      int
+    Value    int
+    Freq     int
+    NextNode *Node
+    PreNode  *Node
+&#125;
+
+type List struct &#123;
+    Head *Node
+    Tail *Node
+&#125;
+
+// 删除链表中的节点
+func (l *List) removeNode(node *Node) &#123;
+    node.PreNode.NextNode = node.NextNode
+    node.NextNode.PreNode = node.PreNode
+&#125;
+
+// 将节点添加链表头部
+func (l *List) addToHead(node *Node) &#123;
+    node.NextNode = l.Head.NextNode
+    node.PreNode = l.Head
+    l.Head.NextNode.PreNode = node
+    l.Head.NextNode = node
+&#125;
+
+// 移除最后一个节点
+func (l *List) removeTail() *Node &#123;
+    node := l.Tail.PreNode
+    l.removeNode(node)
+    return node
+&#125;
+
+// 判断当前链表是不是空的
+func (l *List) isEmpty() bool &#123;
+    return l.Head.NextNode == l.Tail
+&#125;
+
+func newNode(key, value int) *Node &#123;
+    return &amp;Node&#123;Key: key, Value: value, Freq: 1&#125;
+&#125;
+
+func newList() *List &#123;
+    l := &amp;List&#123;
+        Head: newNode(0, 0),
+        Tail: newNode(0, 0),
+    &#125;
+    l.Head.NextNode = l.Tail
+    l.Tail.PreNode = l.Head
+    return l
+&#125;
+
+type LFUCache struct &#123;
+    Cap     int
+    NodeMap map[int]*Node
+    FreqMap map[int]*List
+    MinFreq int
+&#125;
+
+// 将node新增到当前Freq的list中
+func (this *LFUCache) addNode(node *Node) &#123;
+    if _, ok := this.FreqMap[node.Freq]; !ok &#123;
+        this.FreqMap[node.Freq] = newList()
+    &#125;
+    list := this.FreqMap[node.Freq]
+    list.addToHead(node)
+&#125;
+
+// 将node移入到下一个freq链表
+func (this *LFUCache) incrFreq(node *Node) &#123;
+    // 将该节点升级到上一个Freq中
+    list := this.FreqMap[node.Freq]
+    list.removeNode(node)
+    // 如果当前是最小的freq 并且这个链表是空的 则minFreq需要变成下一个
+    if node.Freq == this.MinFreq &amp;&amp; list.isEmpty() &#123;
+        this.MinFreq++
+    &#125;
+    node.Freq++
+    this.addNode(node)
+&#125;
+
+// 删除最不常访问的node
+func (this *LFUCache) removeMinFreqNode() *Node &#123;
+    list := this.FreqMap[this.MinFreq]
+    return list.removeTail()
+&#125;
+
+func Constructor(capacity int) LFUCache &#123;
+    return LFUCache&#123;
+        Cap:     capacity,
+        NodeMap: map[int]*Node&#123;&#125;,
+        FreqMap: map[int]*List&#123;&#125;,
+        MinFreq: 0,
+    &#125;
+&#125;
+
+func (this *LFUCache) Get(key int) int &#123;
+    if node, ok := this.NodeMap[key]; ok &#123;
+        this.incrFreq(node)
+        return node.Value
+    &#125;
+    return -1
+&#125;
+
+func (this *LFUCache) Put(key int, value int) &#123;
+    // 如果key已经存在 则修改value并incrFreq即可
+    if node, ok := this.NodeMap[key]; ok &#123;
+        node.Value = value
+        this.incrFreq(node)
+        return
+    &#125;
+    // 不存在需要新增一个node
+    node := newNode(key, value)
+    // 判断是否已经达到最大容量
+    if len(this.NodeMap) == this.Cap &#123;
+        // 移除最不常访问的
+        dropNode := this.removeMinFreqNode()
+        delete(this.NodeMap, dropNode.Key)
+    &#125;
+    this.addNode(node)
+    this.MinFreq = 1
+    this.NodeMap[key] = node
+    return
+&#125;
+</code></pre>
+<h2 id="LFU相比于LRU的优劣"><a href="#LFU相比于LRU的优劣" class="headerlink" title="LFU相比于LRU的优劣"></a>LFU相比于LRU的优劣</h2><p>区别：</p>
+<p>LFU是基于访问频次的模式，而LRU是基于访问时间的模式。</p>
+<p>优势：</p>
+<ol>
+<li>在数据访问符合正态分布时，相比于LRU算法，LFU算法的缓存命中率会高一些。</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>LFU的复杂度要比LRU更高一些。</li>
+<li>需要维护数据的访问频次，每次访问都需要更新。</li>
+<li>早期的数据相比于后期的数据更容易被缓存下来，导致后期的数据很难被缓存。</li>
+<li>新加入缓存的数据很容易被剔除，像是缓存的末端发生“抖动”。</li>
+</ol>
+<h2 id="LFU算法优化"><a href="#LFU算法优化" class="headerlink" title="LFU算法优化"></a>LFU算法优化</h2><p>从上面的优劣分析中我们可以发现，优化LFU算法可以从下面几点入手：</p>
+<ol>
+<li>更加紧凑的数据结构，避免维护访问频次的高消耗。</li>
+<li>避免早期的热点数据一直占据缓存，即LFU算法也需有一些访问时间模式的特性。</li>
+<li>消除缓存末端的抖动。</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 HBlog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Hina
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

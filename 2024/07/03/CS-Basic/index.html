@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CS Basic | HBlog</title>
+    <meta name="author" content="Hina" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>HBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;HBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>CS Basic</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/7/3
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h2><h3 id="计算机的组成"><a href="#计算机的组成" class="headerlink" title="计算机的组成"></a>计算机的组成</h3><p>控制器(CU)、 运算器(ALU)、存储器(Memory)、输入设备(Input)、输出设备(Output)</p>
+<span id="more"></span>
+
+<h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><p>CU:控制单元&#x2F;控制器(Control Unit) 主要是控制系统</p>
+<p>PC:程序计数器(Program Counter) 记录这一个地址存放下一条执行的指令在哪里 cpu执行完一条就去内存取下一条</p>
+<p>ALU:算数逻辑单元&#x2F;运算器(Arithmetic and Logic Unit) 功能是进行数学(算数)运算和逻辑运算 由一系列的简单电路构成</p>
+<p>Register:寄存器 是CPU暂时存放数据的地方 或者保存那些中间结果 或等待处理的数据</p>
+<p>CPU:中央处理器(Central Processing Unit) 主要功能有四个 分别是顺序控制、操作控制、时间控制、数据加工</p>
+<p>GPU:图形处理器(Graphics Processing Unit) 是一种主要做图像和图形相关运算工作的微处理器 使显卡减少了对CPU的依赖 并进行部分原本CPU的工作</p>
+<p>RAM:随机访问储存器(Random Access Memory) 它是与CPU直接交换数据的内部存储器 特点是可以随时读写 而且速度很快 但它的缺点同样很明显 就是当电源关闭时不能保存数据</p>
+<p>SSD:固态硬盘(Solid Statu Disk) 由控制单元和存储单元(FLASH芯片、DRAM芯片)组成 它的主要功能就是存放计算机内部的数据和文件 是计算机内部的一个主要仓库</p>
+<p>HDD:机械硬盘(Hard Disk Drive) 同样是存储数据介质之一 是传统普通硬盘 主要由:盘片、磁头、盘片转轴及控制电机、磁头控制器、数据转换器、接口、缓存等几个部分组成 工作时通过磁头在磁片的寻道动作来实现存储功能的</p>
+<h4 id="内存屏障"><a href="#内存屏障" class="headerlink" title="内存屏障"></a>内存屏障</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>内存屏障（Memory Barrier）是用于在并发编程中确保对内存操作的执行顺序的一种机制。它是一种防止编译器和处理器对指令进行重排序的工具，以确保程序在多线程环境下的正确执行。</p>
+<h5 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h5><p>为了优化性能，编译器和处理器通常会对指令进行重排序</p>
+<ol>
+<li><strong>编译器重排序</strong>：编译器在生成机器代码时，可能会为了优化性能而改变代码中指令的顺序。</li>
+<li><strong>处理器重排序</strong>：处理器可能会根据其内部的执行单元和缓存的情况，动态地重新排序指令的执行顺序。</li>
+</ol>
+<p>这种重排序对于单线程程序来说通常是安全的，因为最终的执行结果保持不变。但是在多线程环境下，这种重排序可能导致不可预期的行为和难以调试的并发问题。</p>
+<h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><p>内存屏障通过强制一定的顺序来执行内存操作，以确保多线程程序的正确性。主要有以下几种类型</p>
+<ol>
+<li><strong>加载屏障（Load Barrier）</strong>：确保在屏障前的所有加载操作都在屏障后新的加载操作之前完成。</li>
+<li><strong>存储屏障（Store Barrier）</strong>：确保在屏障前的所有存储操作都在屏障后新的存储操作之前完成。</li>
+<li><strong>全屏障（Full Barrier）</strong>：确保在屏障前的所有加载和存储操作都在屏障后新的加载和存储操作之前完成。</li>
+</ol>
+<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><p>假设有两个线程共享一个变量 <code>x</code> 和一个标志 <code>flag</code>：</p>
+<ul>
+<li>线程A：先设置 <code>x = 1</code>，然后设置 <code>flag = true</code>。</li>
+<li>线程B：检测到 <code>flag = true</code> 时，读取 <code>x</code> 的值。</li>
+</ul>
+<p>在没有内存屏障的情况下，编译器或处理器可能会重排序指令，导致线程B读取到的 <code>x</code> 值仍然是初始值（假设是0）。为了避免这种情况，可以在设置 <code>flag = true</code> 之前插入一个存储屏障，确保 <code>x</code> 的更新先于 <code>flag</code> 的更新：</p>
+<pre><code class="c++">// 线程A
+x = 1;
+std::atomic_thread_fence(std::memory_order_release);  // 内存屏障
+flag = true;
+
+// 线程B
+if (flag) &#123;
+    std::atomic_thread_fence(std::memory_order_acquire);  // 内存屏障
+    int value = x;
+&#125;
+</code></pre>
+<p>在这个例子中，内存屏障确保了线程A对 <code>x</code> 的写入在对 <code>flag</code> 的写入之前完成，而线程B在读取 <code>x</code> 之前检测到 <code>flag</code> 的更新，从而确保了程序的正确性。</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>内存屏障是并发编程中的重要机制，通过强制内存操作的顺序来防止指令重排序带来的问题。它们在确保多线程程序的正确性和可预测性方面起到了关键作用。</p>
+<h3 id="CPU与缓存、内存的关系"><a href="#CPU与缓存、内存的关系" class="headerlink" title="CPU与缓存、内存的关系"></a>CPU与缓存、内存的关系</h3><p>CPU内部有缓存 缓存有缓存级别 目前主流的是三级缓存设计(L1 L2 L3)</p>
+<p>L1容量最小 速度最快 每个核都有L1缓存 L1又专门针对指令和数据分成L1d(数据缓存)、L1i(指令缓存)</p>
+<p>L2容量比L1大 速度比L1慢 每个核都有L2缓存</p>
+<p>L3容量最大 速度最慢 多个核共享一个L3缓存</p>
+<p>CPU选取内存中读取命令 将命令解析翻译成自己能够对应上的操作步骤 控制硬件执行</p>
+<p>但是由于CPU内部的ALU访问Register(寄存器)的速度极快极快 比ALU访问RAM(内存)的速度快得多</p>
+<p>但是由于造价成本太高且发热量大 所以不能被大量采用 并且ALU访问RAM的速度”慢”也会带来很多问题</p>
+<p>于是就在CPU内部设计了高速缓存(CPU Cache) 这样的话 每次ALU取数据的时候速度就会快很多</p>
+<p>缓存级数是多有多的好处 少有少的优势 而常见的3级缓存的设计 则是在获取数据和更新数据之间寻找的平衡点</p>
+<p>随着技术的发展 多核心的CPU越来越常见、普及 这是因为当单个CPU主频超过一定范围后</p>
+<p>CPU成本和散热成了很大的问题 主频很难突破10GHz 为了获得更快的计算速度和更好的性能</p>
+<p>芯片设计者决定绕过主频 采用人海战术 在一块CPU中增加多个核心(Core)</p>
+<p>一个核心是一个可以运行指令的独立单元 它包含了ALU和寄存器 并配备L1和L2 Cache 多个核心共享L3 Cache</p>
+<h3 id="缓存行-Cache-Line"><a href="#缓存行-Cache-Line" class="headerlink" title="缓存行 Cache Line"></a>缓存行 Cache Line</h3><p>CPU高速缓存中存取数据的基本单位叫做Cache Line(缓存行)</p>
+<p>实际上 cache分成了多个组 每个组分成多个CacheLine行</p>
+<p>Cache中的数据是按块读取的 当CPU访问某个数据时</p>
+<p>计算机将数据从主存读入Cache 是把要读取数据附近的一部分数据都读取进来</p>
+<p>这样一次读取的一组数据就叫做Cache Line 每一级缓存中都能放很多的CacheLine</p>
+<p>目前应用最多的缓存行长度是64Byte 大有大的好处 小有小的优势:</p>
+<p>缓存行越大 局部空间效率越高 读取时间越慢!</p>
+<p>缓存行越小 局部空间效率越低 读取时间越快!</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 HBlog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Hina
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

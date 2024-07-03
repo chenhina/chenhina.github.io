@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Mysql Basic | HBlog</title>
+    <meta name="author" content="Hina" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>HBLOG</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;HBLOG</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Mysql Basic</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/6/30
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="索引相关的需要了解"><a href="#索引相关的需要了解" class="headerlink" title="索引相关的需要了解"></a>索引相关的需要了解</h3><p> 数据结构、设计原则、优化、失效、回表、索引覆盖、最左匹配、索引下推、聚簇索引</p>
+<span id="more"></span>
+
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>提高查询效率</p>
+<p>数据和索引都是保存在磁盘中的，在进行索引时会先将索引加载到磁盘找到对应的磁盘空间再去取数据</p>
+<h3 id="操作系统常识："><a href="#操作系统常识：" class="headerlink" title="操作系统常识："></a>操作系统常识：</h3><pre><code>局部性原理:
+时间:之前被访问过的数据很有可能再次被访问
+空间:数据和程序都有聚集成群的倾向(相同类型的数据会放一起)
+磁盘预读:
+内存跟磁盘在进行交互的时候有一个最小的逻辑单位，这个单位称之为页，或者data-page，一般是4K或者8K，由操作系统决定，我们在进行数据读取的时候，一般会读取页的整数倍，也就是4K，8K，16K，innodb存储引擎在进行数据加载的时候读取的是16KB的数据
+</code></pre>
+<h3 id="mysql索引流程"><a href="#mysql索引流程" class="headerlink" title="mysql索引流程"></a>mysql索引流程</h3><p><img src="/../../images/image-20210618190125704.png" alt="image-20210618190125704"></p>
+<h3 id="为什么选择B-树"><a href="#为什么选择B-树" class="headerlink" title="为什么选择B+树"></a>为什么选择B+树</h3><p>hashmap会由于算法的原因可能会出现哈希碰撞或者哈希冲突，而且要进行范围查找时需要挨个遍历，效率低。</p>
+<p><img src="/../../images/image-20210618092209434.png" alt="image-20210618092209434"></p>
+<p>二叉树、平衡数、红黑树特点</p>
+<p>由于都是二叉树每个节点只能存2个值导致当数据量大的时候，树的深度增加，导致IO增加、影响查询效率</p>
+<p><img src="/../../images/image-20210618092342607.png" alt="image-20210618092342607"></p>
+<p>B树的特点</p>
+<p>会将一些数据保存在根节点和枝节点，如果需要id为16的数据直接从根节点获取不会往下，如果需要id为30的数据会根据p2的指针一直往下找到30的数据。但是由于根节点和枝节点保存了数据 会导致一旦数据量超过所能保存的3层的极限有需要加深度，导致IO增多，影响效率，所以有了B+树</p>
+<p>假设一个data-page是16K，一个数据占1K那么排除指针和id所占空间每个data-page最多可以存16条数据，三层最多是16 * 16 * 16 &#x3D; 4096条数据 数据量大的话远远不够，需要增加树的深度</p>
+<p><img src="/../../images/image-20210618091953935.png" alt="image-20210618091953935"></p>
+<p>B+树 数据全部保存在叶子节点，根节点和枝节点全部存指针和索引，可以大大增加数据量，只是每次必须经过三层才能获得数据。但也只需要三层，而且三层能保存的数据量是很大的。一般情况3-4层的B+树足以支撑千万级别的数据量</p>
+<p>假设一个data-page为16K，一个id+指针占10个字节空间，一条数据占1K，那么一个data-page可以存16<code>*</code>1024&#x2F;10 那么三层可以存 16*1024&#x2F;10  ** 2 * 16 是千万级别的 </p>
+<p><img src="/../../images/image-20210618093113041.png" alt="image-20210618093113041"></p>
+<h3 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h3><p>数据和索引存储在一起的叫做聚簇索引，没有存储在一起的叫做非聚簇索引</p>
+<p>innodb存储引擎在进行数据插入的时候，数据必须要跟某一个索引列存储在一起，这个索引列可以是主键，如果没有主键，选择唯一键，如果没有唯一键，选择6字节的rowid来进行存储</p>
+<p>此时数据必定是跟某一个索引绑定在一起的，绑定数据的索引叫做聚簇索引 其他索引的叶子节点中存储的数据不再是整行记录，而是聚簇索引的id值。</p>
+<pre><code class="mysql">id  name  age  gender
+id主键  name普通索引
+id是聚簇索引  name对应的索引的B+树上的叶子节点存储的就是id值
+</code></pre>
+<p>innodb中既有聚簇索引，也有非聚簇索引</p>
+<p>myisam中由于索引和数据是分文件存储的 ，所以myisam只有非聚簇索引</p>
+<h3 id="回表"><a href="#回表" class="headerlink" title="回表"></a>回表</h3><pre><code class="mysql">id  name  age  gender
+id主键  name普通索引
+select * from table where name = &quot;zhangsan&quot;;
+# 索引流程
+先根据name的值去name B+树匹配到对应的叶子节点,查询到对应记录的id值, 再根据id去id的 B+树中检索整行记录  这个过程就称之为回表,要尽量避免回表操作
+</code></pre>
+<h3 id="索引覆盖"><a href="#索引覆盖" class="headerlink" title="索引覆盖"></a>索引覆盖</h3><pre><code class="mysql">id  name  age  gender
+id主键  name普通索引
+select id,name from table where name = &quot;zhangsan&quot;;
+# 索引流程
+根据name的值去name B+树检索对应的记录 能获取到id的属性值,索引的叶子节点中包含了查询的所有列,此时不需要回表，这个过程叫做索引覆盖,explain会出现 using index 的提示信息
+推荐使用 在某些场景中  可以考虑将要查询的所有列都变成组合索引  此时会使用索引覆盖  加快查询效率
+</code></pre>
+<h3 id="最左匹配"><a href="#最左匹配" class="headerlink" title="最左匹配"></a>最左匹配</h3><pre><code class="mysql">创建索引的时候可以选择多个列来共同组成索引  此时叫做组合索引或者联合索引  要遵循最左匹配原则
+id  name  age  gender
+id主键  name,age联合索引
+select * from table where name=&quot;zhangsan&quot; and age=12;
+select * from table where name=&quot;zhangsan&quot;;
+select * from table where age=12;
+select * from table where age=12 and name=&quot;zhangsan&quot;;
+
+# 1,2,4会走联合索引 3不会 因为没有满足最左匹配原则
+&quot;&quot;&quot;
+select * from table where name=&quot;zhangsan&quot; and age&gt;12;
+当语句变成这样时不会影响结果  
+但如果 name,age,gender是联合索引  那么 gender的索引就会失效 导致索引失效  但是失效的也只是age后面的索引  对于name来说还是走索引的 
+&quot;&quot;&quot;
+</code></pre>
+<h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><p><img src="/../../images/image-20210618102715190.png" alt="image-20210618102715190"></p>
+<pre><code class="mysql">select * from table where name=&quot;zhangsan&quot; and age=12
+# 在没有索引下推之前
+# 先根据name从存储引擎中拉取数据到server层  然后在server层中对age进行数据过滤
+
+# 有了索引下推之后
+# 根据name和age两个条件来做数据筛选  将筛选之后的结果返回给server层
+</code></pre>
+<p>索引下推指的时从server层推到存储引擎层</p>
+<p>本来只匹配name的话可能会过滤10条记录发送到server层  但如果索引下推 会在存储引擎层匹配name同时匹配age会减少发生到server层的数据量</p>
+<p>mysql是默认开启索引下推的</p>
+<h3 id="优化问题"><a href="#优化问题" class="headerlink" title="优化问题"></a>优化问题</h3><pre><code>加索引
+看执行计划
+优化sql语句
+表结构设计
+分库分表
+自己总结
+</code></pre>
+<h2 id="事务、锁、MVCC"><a href="#事务、锁、MVCC" class="headerlink" title="事务、锁、MVCC"></a>事务、锁、MVCC</h2><p>事务的四大特性：ACID</p>
+<p>原子性、一致性、隔离性、持久性</p>
+<p>MVCC：是多版本并发控制  为了解决在并发进行访问时的读写效率 由于加锁会影响效率</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><pre><code>当前读: 读取得是数据的最新版本 总是读取到最新的数据
+触发条件:
+1.select ... lock in share mode # 读锁
+2.select... for update # 写锁 排他锁
+3.update、delete、insert
+
+快照读: 读取的是历史版本记录
+触发条件:
+select...
+</code></pre>
+<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><pre><code>读未提交
+读已提交:RC
+可重复度:RR(是mysql的默认隔离级别)
+串行化
+</code></pre>
+<p><img src="/../../images/image-20210619085908230.png" alt="image-20210619085908230"></p>
+<pre><code class="mysql">同时开启A、B两个事务 A第二次select能否读到B修改后的最新的结果?
+RC:可以读到最新的结果记录
+RR:不可以读到最新的结果记录
+</code></pre>
+<p>这是由事务版本可见性</p>
+<p>MVCC及可见性算法决定的</p>
+<h3 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h3><h4 id="隐藏字段"><a href="#隐藏字段" class="headerlink" title="隐藏字段"></a>隐藏字段</h4><p>每一行记录都会包含几个用户不可见的字段</p>
+<p>DB_TRX_ID：最后一次创建或修改该记录的事务id</p>
+<p>DB_ROW_ID：隐藏主键 6个字节</p>
+<p>DB_ROW_PTR：回滚指针  配合undolog完成回滚</p>
+<p><img src="/../../images/image-20210619090934655.png" alt="image-20210619090934655"></p>
+<h3 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h3><h4 id="undolog"><a href="#undolog" class="headerlink" title="undolog"></a>undolog</h4><p>回滚日志</p>
+<p><img src="/../../images/image-20210619091252454.png" alt="image-20210619091252454"></p>
+<p>当事务2要对数据进行修改时,会先加上排他锁 然后将当前版本的数据存到undolog中 再对数据进行修改  而且mysql也会将操作记录记录到binlog中 就涉及到二阶段提交了。</p>
+<p><img src="/../../images/image-20210619091813241.png" alt="image-20210619091813241"></p>
+<p>当不同的事务对同一条记录做修改的时候，会导致该记录的undolog形成一个线性表，也就是链表，链表的链首是最新的历史记录，而链尾是最早的历史记录</p>
+<p>如果有了事务4，那么事务4读取到的是哪一个版本的数据？还有前3个事务是否已提交？这4个事务开启的时机？</p>
+<p>需要按照一定的规则和算法来进行判断</p>
+<h3 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h3><h4 id="readview"><a href="#readview" class="headerlink" title="readview"></a>readview</h4><p>事务在进行快照读的时候产生的读视图</p>
+<p>readview中包含的组件</p>
+<p>trx_list：系统活跃的事务id</p>
+<p>up_limit_id：列表中事务最小的id</p>
+<p>low_limit_id：系统尚未分配的下一个事务id</p>
+<h4 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h4><p><img src="/../../images/image-20210619093347319.png" alt="image-20210619093347319"></p>
+<p><img src="/../../images/image-20210619093303133.png" alt="image-20210619093303133"></p>
+<p><img src="/../../images/image-20210619093458168.png" alt="image-20210619093458168"></p>
+<pre><code class="mysql">可见性算法规则:
+1.首先比较DB_TRX_ID&lt;up_limit_id,如果小于，则当前事务能看到DB_TRX_ID所在的记录，如果大于等于进入下一个判断
+2.判断DB_TRX_ID&gt;=low_limit_id，如果大于等于则代表DB_TRX_ID所在的记录在ReadView生成之后才出现的，那么对于当前事务肯定不可见，如果小于，则进入下一步判断
+3.判断DB_TRX_ID是否在活跃事务中，如果再，则代表在ReadView生成时刻，这个事务还是活跃状态，还没有commit，修改的数据，当前事务也是看不到，如果不在，则说明这个事务在ReadView生成之前就已经开始commit，那么修改的结果是能够看见的。
+</code></pre>
+<p>产生现象的原因：</p>
+<pre><code class="mysql">trx_list: 1,2,3
+up_limit_id:1
+low_limit_id:5
+DB_TRX_ID:4
+根据上面的可见性规则:
+1.4&gt;1——&gt;2
+2.4&lt;5——&gt;3
+3.4不在trx_list中——&gt;能看到修改的值
+
+#######
+而在实际中为什么RC的隔离级别是能看到的
+而RR的隔离级别是看不到的呢？
+#######
+因为readview生成的时机是不同的
+RC:每次在进行快照读的时候都会生成新的readview
+RR:只有在第一次进行快照读的时候才会生成readview,之后的读操作都会用第一次生成的readview
+# 这也能解释现象2出现的原因了
+因为事务4在修改之前事务2已经进行了一次快照读,此时就已经生成了readview,所以事务2在进行第二次快照读的用的还是第一次视图读的readview
+# 根据readview的可见性规则
+第一次快照读时
+trx_list: 1,2,3,4
+up_limit_id:1
+low_limit_id:5
+DB_TRX_ID:0
+DB_TRX_ID&lt;up_limit_id——&gt;事务2能看到事务0的结果也就是最初始的3条记录
+第二次快照读时,还是用的第一次的readview,但是记录的DB_TRX_ID已经变成4了。
+trx_list: 1,2,3,4
+up_limit_id:1
+low_limit_id:5
+DB_TRX_ID:4
+4&gt;1——&gt;4&lt;5——&gt;4在trx_list中——&gt;表示当前事务还是活跃状态,没有commit,所以事务2的第二次视图读看不到事务4修改后的记录的。
+</code></pre>
+<p>事务四大特性是如何保证的？</p>
+<p><img src="/../../images/image-20210619100601626.png" alt="image-20210619100601626"></p>
+<h3 id="Redo-log二阶段提交"><a href="#Redo-log二阶段提交" class="headerlink" title="Redo log二阶段提交"></a>Redo log二阶段提交</h3><p>日志又分为随机读写和顺序读写</p>
+<p>随机读写的效率要低于顺序读写，为了保证数据的一致性，可以先将数据通过顺序读写的方式写到日志文件中，容纳后再将数据写入到对应的磁盘文件中，这个过程顺序的效率要远远高于随机的效率，换句话说，如果实际的数据没有写入到磁盘，只要日志文件保存成功了，那么数据就不会丢失，可以根据日志来进行数据的恢复。</p>
+<p>mysql的binlog和innodb的redolog这两种日志属于不同的组件，所以为了保证数据的一致性，要保证binlog和redolog一致，所以有了二阶段提交的概念。</p>
+<p>先写redolog后写binlog:假设在redolog写完，binlog还没有写完的时候,MySQL进程异常重启，所以系统在恢复的时候会根据redolog会将c的值设为1，但是binlog中并没有这条语句。因此，如果需要binlog来恢复临时库的话，这个临时库会少一个更新语句，恢复出来的c的值就是0，与原库的值不同。</p>
+<p>先写binlog后写redolog，也是同理。</p>
+<p>具体流程</p>
+<p><img src="/../../images/image-20210619102056502.png" alt="image-20210619102056502"></p>
+<p>当redolog写入成功后突然崩溃，那么系统恢复时会根据redolog和binlog的比较发现binlog少一条数据，redolog处于prepare状态，那么redolog会将多的数据删掉，并将prepare状态改掉，回滚到事务发生前。</p>
+<p>当binlog写入成功后崩溃，恢复时比较redolog和binlog发送两份日志一样，并且redolog处于prepare状态，则直接将事务提交即可。</p>
+<h3 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h3><p><img src="/../../images/image-20210619103245468.png" alt="image-20210619103245468"></p>
+<p>由于在一个事务中既有了快照读，又有了当前读，所以发生了幻读，主要是readview发送了变化。</p>
+<p>解决方法：将所有的快照读都加上读锁或者写锁改成当前读重新生成readview。</p>
+<p>查看锁</p>
+<pre><code class="mysql">set global innodb_status_output_locks=1;
+# 在事务中执行当前读/快照读并查看锁的状态
+show engine innodb status\G;
+
+# 发生当前读时会产生间隙锁和意向锁
+# 当其他的事务执行插入操作时会阻塞
+# 当其他事务不能对数据进行修改时就不会发生幻读了
+</code></pre>
+<p>结论：</p>
+<pre><code>一个事务操作都是快照读是不会发生幻读的
+
+一个事务中既有快照读又有当前读才会产生幻读需要全部改成当前读 for uodate
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2024 HBlog
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Hina
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
