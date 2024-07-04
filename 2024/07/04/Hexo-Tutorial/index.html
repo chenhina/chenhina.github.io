@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>HBlog</title>
+    <title>Hexo Tutorial | HBlog</title>
     <meta name="author" content="Hina" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -42,7 +42,9 @@
 
 
 
-<script src="/js/lib/home.js"></script>
+
+
+
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -152,40 +154,11 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="home-head">
-    <div
-        id="home-background"
-        ref="homeBackground"
-        data-images="/images/background.jpg"
-    ></div>
-    <div id="home-info" @click="homeClick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>HBlog</h1>
-                <h3></h3>
-                <h5></h5>
-            </div>
-        </span>
+            <div class="article">
+    <div>
+        <h1>Hexo Tutorial</h1>
     </div>
-</div>
-<div
-    id="home-posts-wrap"
-    ref="homePostsWrap"
-    true
->
-    <div id="home-posts">
-        
-
-<div class="post">
-    <a href="/2024/07/04/Hexo-Tutorial/">
-        <h2 class="post-title">Hexo Tutorial</h2>
-    </a>
-    <div class="category-and-date">
-        
+    <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
@@ -195,208 +168,46 @@
         
         
     </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="Hexo-教程"><a href="#Hexo-教程" class="headerlink" title="Hexo 教程"></a>Hexo 教程</h2><p>暂时只是搭建一个简单的Hexo Blog 还有一些功能还没研究 后续研究会更新文档</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/07/04/Hexo-Tutorial/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/07/03/CS-Basic/">
-        <h2 class="post-title">CS Basic</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/7/3
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h2><h3 id="计算机的组成"><a href="#计算机的组成" class="headerlink" title="计算机的组成"></a>计算机的组成</h3><p>控制器(CU)、 运算器(ALU)、存储器(Memory)、输入设备(Input)、输出设备(Output)</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/07/03/CS-Basic/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/30/Dynamic-Programming/">
-        <h2 class="post-title">Dynamic Programming</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/30
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>是一种通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/06/30/Dynamic-Programming/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/30/Slice-Partition/">
-        <h2 class="post-title">Slice Partition</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/30
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="数组分和"><a href="#数组分和" class="headerlink" title="数组分和"></a>数组分和</h2><p>数组分和——动态规划</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/06/30/Slice-Partition/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/30/Mysql-Basic/">
-        <h2 class="post-title">Mysql Basic</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/30
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="索引相关的需要了解"><a href="#索引相关的需要了解" class="headerlink" title="索引相关的需要了解"></a>索引相关的需要了解</h3><p> 数据结构、设计原则、优化、失效、回表、索引覆盖、最左匹配、索引下推、聚簇索引</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/06/30/Mysql-Basic/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/29/LFU-Cache/">
-        <h2 class="post-title">LFU Cache</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/29
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>LFU全称是最不经常使用算法（Least Frequently Used），LFU算法的基本思想和所有的缓存算法一样，都是基于locality假设（局部性原理）：</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/06/29/LFU-Cache/" class="go-post">阅读全文</a>
-</div>
-
-
-        <div class="page-current">
     
-    <span class="current">1</span>
+    <div class="content" v-pre>
+        <h2 id="Hexo-教程"><a href="#Hexo-教程" class="headerlink" title="Hexo 教程"></a>Hexo 教程</h2><p>暂时只是搭建一个简单的Hexo Blog 还有一些功能还没研究 后续研究会更新文档</p>
+<span id="more"></span>
+
+<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><ol>
+<li>去Nodejs官方下载 nodejs</li>
+<li>按照安装步骤一步步安装好 安装好了之后使用<code>node -v</code>检测是否完成(可能需要检查环境变量)</li>
+</ol>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ol>
+<li>下载hexo客户端 <code>npm install hexo-cli -g</code></li>
+<li>本地创建blog文件夹 <code>mkdir my_blog</code> &amp; <code>cd my_blog</code>  &amp; <code>hexo init</code> 或者直接<code>hexo init my_blog</code>  &amp;&amp; </li>
+<li>下载依赖 <code>npm install</code></li>
+</ol>
+<p>初始化之后会出现如下的文件</p>
+<pre><code>.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes
+</code></pre>
+<p><code>_config.yml</code>: 配置文件 hexo的配置信息 需要修改部分</p>
+<p><code>package.json</code>:应用程序的信息</p>
+<p><code>scaffolds</code>:模版文件夹。新建文章时，Hexo 会根据 scaffold 来创建文件</p>
+<p><code>source</code>: 存放用户资源的地方也就是存放写的文章</p>
+<p><code>thmems</code>: <a target="_blank" rel="noopener" href="https://hexo.io/themes/">hexo主题</a> 可以下载一些喜欢的样式</p>
+<h3 id="配置GitHub"><a href="#配置GitHub" class="headerlink" title="配置GitHub"></a>配置GitHub</h3><p>如果想要部署在github上(推荐) 需要在自己github上创建仓库</p>
+<p>仓库名必须是 <code>username.github.io</code></p>
+<p><img src="/./Hexo-Tutorial.assets/image-20240704101238040.png" alt="image-20240704101238040"></p>
+
+    </div>
     
     
     
     
-</div>
-
-    </div>
     
-    <div id="home-card">
-        <div id="card-style">
-    <div id="card-div">
-        <div class="avatar">
-            <img src="/images/avatar.jpg" alt="avatar" />
-        </div>
-        <div class="name">Hina</div>
-        <div class="description">
-            <p>Description<br>…</p>
-
-        </div>
-        
-        
-        <div class="friend-links">
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://github.com/chenhina/chenhina.github.io">Argvchs</a>
-            </div>
-            
-        </div>
-        
-    </div>
-</div>
-
-    </div>
+    
     
 </div>
 
@@ -428,6 +239,12 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+
     
 </body>
 </html>
