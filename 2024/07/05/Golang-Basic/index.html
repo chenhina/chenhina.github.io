@@ -184,7 +184,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Basic/" style="color: #00bcd4">
+                <a href="/tags/Basic/" style="color: #00a596">
                     Basic
                 </a>
             </span>
@@ -222,6 +222,34 @@
 <li>channel(向channel发送数据hb接收数据)</li>
 <li>锁(unlock hb lock)</li>
 </ul>
+<h3 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>空channel</th>
+<th>已关闭的channel</th>
+<th>活跃channel</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>close(ch)</td>
+<td>panic</td>
+<td>Panic</td>
+<td>成功关闭</td>
+</tr>
+<tr>
+<td>ch &lt;- v</td>
+<td>永远阻塞</td>
+<td>panic</td>
+<td>成功发送&#x2F;阻塞</td>
+</tr>
+<tr>
+<td>v,ok &#x3D; &lt;-ch</td>
+<td>永远阻塞</td>
+<td>不阻塞 一直收到默认值和false</td>
+<td>成功接收或阻塞</td>
+</tr>
+</tbody></table>
 
     </div>
     

@@ -166,6 +166,30 @@
             2024/7/4
         </span>
         
+        <span class="category">
+            <a href="/categories/Hexo/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                Hexo
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/Tutorial/" style="color: #ff7d73">
+                    Tutorial
+                </a>
+            </span>
+            
+        </span>
         
     </div>
     
@@ -330,6 +354,25 @@ hexo g
 
 # Deploy the generated files
 hexo d
+</code></pre>
+<h3 id="添加分类和tag"><a href="#添加分类和tag" class="headerlink" title="添加分类和tag"></a>添加分类和tag</h3><pre><code class="bash">hexo new page categories/tags
+</code></pre>
+<p>在source下的categoried&#x2F;tags文件夹中</p>
+<pre><code class="bash">---
+title: 分类
+date: 2024-04-24 15:30:30
+type: categories
+---
+</code></pre>
+<p>在文章中</p>
+<pre><code class="bash">---
+title: xxx
+date: 2024-04-24 15:40:24
+categories: 
+           - Hexo
+tags:
+           - 博客
+---
 </code></pre>
 
     </div>
